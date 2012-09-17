@@ -1,0 +1,66 @@
+
+# current directory のgitリポジトリ情報を取得
+_set_env_git_current_branch() {
+    GIT_CURRENT_REPOSITORY=`git config --local -l 2>/dev/null | awk -F/ '/^remote.origin.url/{print $NF}'`
+    GIT_CURRENT_BRANCH=`git branch 2>/dev/null | awk '/^\*/{print $2}'`
+    if [ "$GIT_CURRENT_REPOSITORY" = "" ] || [ "$GIT_CURRENT_BRANCH" = "" ]
+    then
+        GIT_CURRENT_REPOSITORY="remote"
+        GIT_CURRENT_BRANCH="repos"
+    fi
+}
+
+_update_rprompt () {
+    RPROMPT="[$GIT_CURRENT_REPOSITORY:$GIT_CURRENT_BRANCH]"
+}
+
+precmd()
+{
+    _set_env_git_current_branch
+    _update_rprompt
+}
+
+chpwd()
+{
+    _set_env_git_current_branch
+    _update_rprompt
+}
+if [ $UID -eq 0 ]
+then
+    U_COLOR="37;41"
+else
+    U_COLOR="37;44"
+fi
+PROMPT=$'[%{\e[01;'${U_COLOR}$'m%}%n%{\e[0m%}@%m:%c]%# '
+#RPROMPT='[%D %*]'
+
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt extended_history
+
+LISTMAX=0
+
+autoload -Uz compinit; compinit
+
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+
+setopt append_history
+
+setopt auto_list
+
+setopt list_packed
+
+setopt auto_menu
+
+setopt auto_param_keys
+
+ setopt no_beep
+
+setopt hist_ignore_dups
+
+setopt hist_no_store
+
+export GIT_PAGER="lv -c"
+
