@@ -1,0 +1,8 @@
+[alias]
+    tree = log --graph --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset'
+    graph = log --graph --date-order -C -M --pretty='format:<%h> %ad [%cn] %Cgreen%d%Creset %s' --all --date=short
+[color]
+    ui=auto
+[user]
+    name = Masaya Yashiro
+    email = yashims85@gmail.com
