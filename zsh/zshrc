@@ -42,11 +42,12 @@ else
 fi
 
 PROMPT=$'[%{\e['${U_COLOR}$'m%}%n%{\e[0m%}@%{\e['${H_COLOR}$'m%}%m%{\e[0m%}:%c]%# '
-#RPROMPT='[%D %*]'
 
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
+
+export CLICOLOR=1
 
 setopt extended_history
 

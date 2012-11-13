@@ -1,9 +1,10 @@
-if [ $OSTYPE = 'LINUX' ]
+if [ $OSTYPE = 'Linux' ]
+then
   alias ls='ls -A --color=auto'
+elif [ $OSTYPE = 'Darwin' -o $OSTYPE = 'Unix' ]
 then
-elif [ $OSTYPE = 'MAC' -o $OSTYPE = 'UNIX' ]
-then
-elif [ &OSTYPE = 'WINDOWS' ]
+  alias ls='ls -AG'
+elif [ $OSTYPE = 'WINDOWS' ]
 then
 fi
 
