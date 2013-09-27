@@ -77,8 +77,10 @@ setopt hist_no_store
 
 export GIT_PAGER="lv -c"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source ~/.rvm/scripts/rvm
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
 [[ -s "$HOME/.gvm/bin/gvm-init.sh" ]] && source "$HOME/.gvm/bin/gvm-init.sh"
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 source ~/dotfiles/zsh/alias.sh
