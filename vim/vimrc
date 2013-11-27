@@ -1,3 +1,9 @@
+" 最初に準備すること
+" mkdir -p ~/.vim/bundle/ ~/.vim/tmp/backup/ ~/.vim/tmp/snippets ~/.vim/tmp/swap/
+" cd ~/.vim/bundle/
+" git clone https://github.com/Shougo/neobundle.vim
+" 以降neobundle.vimのREADMEに従う
+
 "----------------------------------------------------
 " 基本的な設定
 "----------------------------------------------------
@@ -145,13 +151,13 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.psgi set filetype=perl
     autocmd BufNewFile,BufRead *.t    set filetype=perl
     " カーソル位置を記憶する
-    autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal g`\"" |
-        \ endif
-	autocmd FileType *
-		\ let &l:comments
-		\=join(filter(split(&l:comments, ','), 'v:val =~ "^[sme]"'), ',')
+"    autocmd BufReadPost *
+"        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"        \   exe "normal g`\"" |
+"        \ endif
+"	autocmd FileType *
+"        \ let &l:comments
+"        \=join(filter(split(&l:comments, ','), 'v:val =~ "^[sme]"'), ',')
 endif
 
 "----------------------------------------------------
