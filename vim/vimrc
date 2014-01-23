@@ -150,6 +150,7 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.scss set filetype=css
     autocmd BufNewFile,BufRead *.psgi set filetype=perl
     autocmd BufNewFile,BufRead *.t    set filetype=perl
+    autocmd BufNewFile,BufRead *.hbs  set filetype=html
     " カーソル位置を記憶する
 "    autocmd BufReadPost *
 "        \ if line("'\"") > 0 && line("'\"") <= line("$") |
