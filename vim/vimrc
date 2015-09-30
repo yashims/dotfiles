@@ -146,7 +146,7 @@ set fileencodings+=,ucs-2le,ucs-2,utf-8
 " オートコマンド
 "----------------------------------------------------
 augroup vimrc
-    autocmd FileType html,coffee,javascript,css setlocal shiftwidth=2 tabstop=2 softtabstop=2
+    autocmd FileType html,coffee,javascript,css,sh,ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
 if has("autocmd")
     " 自動判定されない拡張子のファイルタイプを設定
