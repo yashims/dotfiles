@@ -9,3 +9,5 @@
 [user]
     name = Masaya Yashiro
     email = yashims85@gmail.com
+[push]
+	default = simple
