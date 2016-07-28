@@ -8,3 +8,4 @@ elif [ $OSTYPE = 'WINDOWS' ]
 then
 fi
 
+source ~/dotfiles/zsh/_gradle

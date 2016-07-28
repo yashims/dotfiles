@@ -76,7 +76,6 @@ setopt hist_no_store
 
 export GIT_PAGER="lv -c"
 
-[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
 [[ -s "$HOME/.gvm/bin/gvm-init.sh" ]] && source "$HOME/.gvm/bin/gvm-init.sh"
 
 # anyenv $ git clone https://github.com/riywo/anyenv ~/.anyenv
