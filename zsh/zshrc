@@ -3,7 +3,7 @@
 # current directory のgitリポジトリ情報を取得
 _set_env_git_current_branch() {
     GIT_CURRENT_REPOSITORY=`git config --local -l 2>/dev/null | awk -F/ '/^remote.origin.url/{print $NF}'`
-    GIT_CURRENT_BRANCH=`git branch 2>/dev/null | awk '/^\*/{print $2}'`
+    GIT_CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
     if [ "$GIT_CURRENT_REPOSITORY" = "" ] || [ "$GIT_CURRENT_BRANCH" = "" ]
     then
         GIT_CURRENT_REPOSITORY="repos"
@@ -49,7 +49,6 @@ SAVEHIST=10000
 
 export CLICOLOR=1
 export PATH="$PATH:$HOME/bin"
-export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 setopt extended_history
 
