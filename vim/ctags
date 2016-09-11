@@ -1,0 +1,5 @@
+--append=no
+--recurse=yes
+--sort=yes
+--tag-relative
+--exclude=*.js
