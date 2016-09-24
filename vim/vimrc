@@ -147,7 +147,7 @@ set statusline=%n\:%y%F\ \|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}%m%r%=<%l/%L:%
 highlight StatusLine   term=NONE cterm=NONE ctermfg=black ctermbg=green
 
 " タブが対応する空白の数
-set tabstop=4
+set tabstop=2
 " タブやバックスペースの使用等の編集操作をするときに、タブが対応する空白の数
 set softtabstop=4
 " インデントの各段階に使われる空白の数
@@ -170,7 +170,7 @@ set fileencodings+=,ucs-2le,ucs-2,utf-8
 " オートコマンド
 "----------------------------------------------------
 augroup vimrc
-    autocmd FileType html,coffee,javascript,css,sh,ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
+    autocmd FileType html,coffee,javascript,css,sh,ruby,yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
 if has("autocmd")
     " 自動判定されない拡張子のファイルタイプを設定
