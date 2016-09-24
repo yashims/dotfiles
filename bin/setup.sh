@@ -2,6 +2,16 @@
 
 cd `dirname $0`/../
 
+if [ -e $HOME/.zshrc ]; then
+  rm -f $HOME/.zshrc
+fi
+ln -sf $PWD/zsh/zshrc $HOME/.zshrc
+
+if [ -e $HOME/.tmux.conf ]; then
+  rm -f $HOME/.tmux.conf
+fi
+ln -sf $PWD/zsh/tmux.conf $HOME/.tmux.conf
+
 if [ -e $HOME/.vimrc ]; then
   rm -f $HOME/.vimrc
 fi
