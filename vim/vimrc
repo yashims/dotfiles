@@ -53,6 +53,8 @@ NeoBundle 'osyo-manga/vim-watchdogs'
 NeoBundle 'othree/eregex.vim'
 " git edited
 NeoBundle 'airblade/vim-gitgutter'
+" editorconfig
+NeoBundle 'editorconfig/editorconfig-vim'
 
 
 call neobundle#end()
@@ -170,7 +172,7 @@ set fileencodings+=,ucs-2le,ucs-2,utf-8
 " オートコマンド
 "----------------------------------------------------
 augroup vimrc
-    autocmd FileType html,coffee,javascript,css,sh,ruby,yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2
+    autocmd FileType html,tx,coffee,javascript,css,scss,sh,ruby,json,js,yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
 if has("autocmd")
     " 自動判定されない拡張子のファイルタイプを設定
