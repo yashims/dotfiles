@@ -2,10 +2,10 @@
 
 cd `dirname $0`/../
 
-if [ -e $HOME/.zshrc ]; then
-  rm -f $HOME/.zshrc
+# zshrcは書き換えること多いので、不用意に消さないように
+if [ ! -f $HOME/.zshrc ]; then
+  ln -sf $PWD/zsh/zshrc $HOME/.zshrc
 fi
-ln -sf $PWD/zsh/zshrc $HOME/.zshrc
 
 if [ -e $HOME/.tmux.conf ]; then
   rm -f $HOME/.tmux.conf

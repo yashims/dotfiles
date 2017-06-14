@@ -76,7 +76,8 @@ setopt hist_no_store
 
 export GIT_PAGER="lv -c"
 
-[[ -s "$HOME/.gvm/bin/gvm-init.sh" ]] && source "$HOME/.gvm/bin/gvm-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "/Users/yashiro/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/yashiro/.sdkman/bin/sdkman-init.sh"
 
 # anyenv $ git clone https://github.com/riywo/anyenv ~/.anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
