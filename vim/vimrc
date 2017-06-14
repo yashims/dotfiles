@@ -1,8 +1,40 @@
-" 最初に準備すること
-" mkdir -p ~/.vim/bundle/ ~/.vim/tmp/backup/ ~/.vim/tmp/snippets ~/.vim/tmp/swap/
-" cd ~/.vim/bundle/
-" git clone https://github.com/Shougo/neobundle.vim
-" 以降neobundle.vimのREADMEに従う
+"----------------------------------------------------
+" Dein設定
+"----------------------------------------------------
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+"dein.vim が無いのにフックして色々セットアップ処理
+if &runtimepath !=# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
+
+" deinの設定
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  " プラグインリストを収めた TOML ファイル
+  " 予め TOML ファイル（後述）を用意しておく
+  let g:rc_dir    = expand('~/.vim/rc')
+  let s:toml      = g:rc_dir . '/dein.toml'
+  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+
+  " TOML を読み込み、キャッシュしておく
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+  " 設定終了
+  call dein#end()
+  call dein#save_state()
+endif
+
+" もし、未インストールものものがあったらインストール
+if dein#check_install()
+  call dein#install()
+endif
 
 "----------------------------------------------------
 " 基本的な設定
@@ -10,60 +42,6 @@
 " viとの互換性をとらない(vimの独自拡張機能を使う為)
 set nocompatible
 set ambiwidth=double
-
-"----------------------------------------------------
-" Vandle設定
-"----------------------------------------------------
-filetype off                   " required!
-
-if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim
-endif
-call neobundle#begin(expand('~/.vim/bundle'))
-NeoBundle 'Shougo/neobundle.vim'
-" 以下のプラグインをバンドル
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-" 実行プラグインをバンドル
-NeoBundle 'thinca/vim-quickrun'
-" シンタックスプラグイン
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'Shougo/vimproc.vim', {
-            \ 'build' : {
-            \     'windows' : 'tools\\update-dll-mingw',
-            \     'cygwin'  : 'make -f make_cygwin.mak',
-            \     'mac'     : 'make',
-            \     'linux'   : 'make',
-            \     'unix'    : 'gmake',
-            \   },
-            \ }
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'jceb/vim-hier'
-NeoBundle 'dannyob/quickfixstatus'
-NeoBundle 'osyo-manga/shabadou.vim'
-NeoBundle 'osyo-manga/vim-watchdogs'
-" perl regexpを使う
-NeoBundle 'othree/eregex.vim'
-" git edited
-NeoBundle 'airblade/vim-gitgutter'
-" editorconfig
-NeoBundle 'editorconfig/editorconfig-vim'
-
-
-call neobundle#end()
-
-filetype plugin indent on
-
-"----------------------------------------------------
-" 基本的な設定
-"----------------------------------------------------
 " 改行コードの自動認識
 set fileformats=unix,dos,mac
 " ビープ音を鳴らさない
@@ -214,7 +192,7 @@ let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 " define snippets directory
-let g:neocomplcache_snippets_dir = "~/.vim/tmp/snippets/"
+let g:neocomplcache_snippets_dir = '~/.vim/tmp/snippets'
 
 " grep replace
 if executable('ag')
@@ -260,7 +238,7 @@ map <C-n> :NERDTreeToggle<CR>
 
 nnoremap [unite] <Nop>
 nmap <Space>u [unite]
-nnoremap [unite]f :<C-u>Unite file_rec/git -start-insert<CR>
+nnoremap [unite]f :<C-u>Unite file_rec -start-insert<CR>
 nnoremap [unite]m :<C-u>Unite file_mru -start-insert<CR>
 nnoremap [unite]l :<C-u>Unite line -start-insert<CR>
 nnoremap [unite]o :<C-u>Unite outline -start-insert<CR>

@@ -1,0 +1,75 @@
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/unite-outline'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'Shougo/neocomplcache'
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+# 実行プラグインをバンドル
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+# シンタックスプラグイン
+repo = 'scrooloose/syntastic'
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+
+[[plugins]]
+repo = 'groenewege/vim-less'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+hook_post_update = '''
+  if dein#util#_is_windows()
+    let cmd = 'tools\\update-dll-mingw'
+  elseif dein#util#_is_cygwin()
+    let cmd = 'make -f make_cygwin.mak'
+  elseif executable('gmake')
+    let cmd = 'gmake'
+  else
+    let cmd = 'make'
+  endif
+  let g:dein#plugin.build = cmd
+'''
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+repo = 'jceb/vim-hier'
+
+[[plugins]]
+repo = 'dannyob/quickfixstatus'
+
+[[plugins]]
+repo = 'osyo-manga/shabadou.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-watchdogs'
+
+[[plugins]]
+# perl regexpを使う
+repo = 'othree/eregex.vim'
+
+[[plugins]]
+# git edited
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+# editorconfig
+repo = 'editorconfig/editorconfig-vim'

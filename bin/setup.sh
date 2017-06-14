@@ -23,9 +23,10 @@ fi
 ln -sf $PWD/vim/ctags $HOME/.ctags
 
 if [ ! -d $HOME/.vim ]; then
-  mkdir -p $HOME/.vim/bundle/ $HOME/.vim/tmp/backup/ $HOME/.vim/tmp/snippets $HOME/.vim/tmp/swap/
-  git clone https://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/
+  mkdir -p $HOME/.vim/rc/ $HOME/.vim/tmp/backup/ $HOME/.vim/tmp/snippets $HOME/.vim/tmp/swap/
 fi
+ln -sf $PWD/vim/dein.toml $HOME/.vim/rc/dein.toml
+ln -sf $PWD/vim/dein_lazy.toml $HOME/.vim/rc/dein_lazy.toml
 
 if [ ! -d $HOME/.anyenv ]; then
   git clone https://github.com/riywo/anyenv $HOME/.anyenv
