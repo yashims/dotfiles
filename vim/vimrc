@@ -1,8 +1,40 @@
-" 最初に準備すること
-" mkdir -p ~/.vim/bundle/ ~/.vim/tmp/backup/ ~/.vim/tmp/snippets ~/.vim/tmp/swap/
-" cd ~/.vim/bundle/
-" git clone https://github.com/Shougo/neobundle.vim
-" 以降neobundle.vimのREADMEに従う
+"----------------------------------------------------
+" Dein設定
+"----------------------------------------------------
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+"dein.vim が無いのにフックして色々セットアップ処理
+if &runtimepath !=# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
+
+" deinの設定
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  " プラグインリストを収めた TOML ファイル
+  " 予め TOML ファイル（後述）を用意しておく
+  let g:rc_dir    = expand('~/.vim/rc')
+  let s:toml      = g:rc_dir . '/dein.toml'
+  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+
+  " TOML を読み込み、キャッシュしておく
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+  " 設定終了
+  call dein#end()
+  call dein#save_state()
+endif
+
+" もし、未インストールものものがあったらインストール
+if dein#check_install()
+  call dein#install()
+endif
 
 "----------------------------------------------------
 " 基本的な設定
@@ -10,35 +42,6 @@
 " viとの互換性をとらない(vimの独自拡張機能を使う為)
 set nocompatible
 set ambiwidth=double
-
-"----------------------------------------------------
-" Vandle設定
-"----------------------------------------------------
-filetype off                   " required!
-
-if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim
-endif
-call neobundle#rc(expand('~/.vim/bundle'))
-NeoBundle 'Shougo/neobundle.vim'
-" 以下のプラグインをバンドル
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-" 実行プラグインをバンドル
-NeoBundle 'thinca/vim-quickrun'
-" シンタックスプラグイン
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'groenewege/vim-less'
-"call neobundle#end()
-
-filetype plugin indent on
-
-"----------------------------------------------------
-" 基本的な設定
-"----------------------------------------------------
 " 改行コードの自動認識
 set fileformats=unix,dos,mac
 " ビープ音を鳴らさない
@@ -124,7 +127,7 @@ set statusline=%n\:%y%F\ \|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}%m%r%=<%l/%L:%
 highlight StatusLine   term=NONE cterm=NONE ctermfg=black ctermbg=green
 
 " タブが対応する空白の数
-set tabstop=4
+set tabstop=2
 " タブやバックスペースの使用等の編集操作をするときに、タブが対応する空白の数
 set softtabstop=4
 " インデントの各段階に使われる空白の数
@@ -147,7 +150,7 @@ set fileencodings+=,ucs-2le,ucs-2,utf-8
 " オートコマンド
 "----------------------------------------------------
 augroup vimrc
-    autocmd FileType html,coffee,javascript,css,sh,ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
+    autocmd FileType html,tx,coffee,javascript,css,scss,sh,ruby,json,js,yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
 if has("autocmd")
     " 自動判定されない拡張子のファイルタイプを設定
@@ -155,6 +158,7 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.psgi set filetype=perl
     autocmd BufNewFile,BufRead *.t    set filetype=perl
     autocmd BufNewFile,BufRead *.hbs  set filetype=html
+    autocmd BufNewFile,BufRead *.tx   set filetype=html
     " カーソル位置を記憶する
 "    autocmd BufReadPost *
 "        \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -188,7 +192,39 @@ let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 " define snippets directory
-let g:neocomplcache_snippets_dir = "~/.vim/tmp/snippets/"
+let g:neocomplcache_snippets_dir = '~/.vim/tmp/snippets'
+
+" grep replace
+if executable('ag')
+  let g:unite_source_grep_command       = 'ag'
+  let g:unite_source_grep_default_opts  = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
+" unite
+let g:unite_enable_smart_case = 1
+let s:unite_ignore_file_rec_patterns=
+  \ ''
+  \ .'vendor/bundle\|.bundle/\|\.sass-cache/\|'
+  \ .'node_modules/\|bower_components/\|'
+  \ .'\.git/\|htdocs/\|htmls/\|fonts/\|images/\|'
+  \ .'\.\(bmp\|gif\|jpe\?g\|png\|webp\|ai\|psd\)"\?$'
+
+call unite#custom#source(
+  \ 'file_rec/async,file_rec/git',
+  \ 'ignore_pattern',
+  \ s:unite_ignore_file_rec_patterns)
+
+let s:unite_ignore_directory_patterns=
+  \ ''
+  \ .'vendor/bundle\|.bundle/\|\.sass-cache/\|'
+  \ .'node_modules/\|bower_components/'
+  \ .'\.git/\|htdocs/\|htmls/\|fonts/\|images/'
+
+call unite#custom#source(
+  \ 'directory_mru,directory_rec/async',
+  \ 'ignore_pattern',
+  \ s:unite_ignore_directory_patterns)
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -200,6 +236,17 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " CommandMap
 map <C-n> :NERDTreeToggle<CR>
 
+nnoremap [unite] <Nop>
+nmap <Space>u [unite]
+nnoremap [unite]f :<C-u>Unite file_rec -start-insert<CR>
+nnoremap [unite]m :<C-u>Unite file_mru -start-insert<CR>
+nnoremap [unite]l :<C-u>Unite line -start-insert<CR>
+nnoremap [unite]o :<C-u>Unite outline -start-insert<CR>
+nnoremap [unite]a :<C-u>Unite grep:. -start-insert<CR>
+nnoremap [unite]r :<C-u>UniteResume -start-insert<CR>
+
+nnoremap <C-]> g<C-]>
+
 "----------------------------------------------------
 " その他
 "----------------------------------------------------
@@ -209,3 +256,4 @@ set hidden
 set shortmess+=I
 
 set t_RV=
+
