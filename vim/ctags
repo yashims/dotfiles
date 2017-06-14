@@ -3,3 +3,14 @@
 --sort=yes
 --tag-relative
 --exclude=*.js
+--exclude=node_modules
+--exclude=bower_components
+--exclude=htdocs
+--exclude=.*
+--exclude=tmp
+--exclude=bin
+--exclude=template
+--exclude=mock
+--exclude=grunt
+--exclude=template
+--exclude=xslate

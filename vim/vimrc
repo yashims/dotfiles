@@ -180,6 +180,7 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.psgi set filetype=perl
     autocmd BufNewFile,BufRead *.t    set filetype=perl
     autocmd BufNewFile,BufRead *.hbs  set filetype=html
+    autocmd BufNewFile,BufRead *.tx   set filetype=html
     " カーソル位置を記憶する
 "    autocmd BufReadPost *
 "        \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -224,6 +225,28 @@ endif
 
 " unite
 let g:unite_enable_smart_case = 1
+let s:unite_ignore_file_rec_patterns=
+  \ ''
+  \ .'vendor/bundle\|.bundle/\|\.sass-cache/\|'
+  \ .'node_modules/\|bower_components/\|'
+  \ .'\.git/\|htdocs/\|htmls/\|fonts/\|images/\|'
+  \ .'\.\(bmp\|gif\|jpe\?g\|png\|webp\|ai\|psd\)"\?$'
+
+call unite#custom#source(
+  \ 'file_rec/async,file_rec/git',
+  \ 'ignore_pattern',
+  \ s:unite_ignore_file_rec_patterns)
+
+let s:unite_ignore_directory_patterns=
+  \ ''
+  \ .'vendor/bundle\|.bundle/\|\.sass-cache/\|'
+  \ .'node_modules/\|bower_components/'
+  \ .'\.git/\|htdocs/\|htmls/\|fonts/\|images/'
+
+call unite#custom#source(
+  \ 'directory_mru,directory_rec/async',
+  \ 'ignore_pattern',
+  \ s:unite_ignore_directory_patterns)
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
