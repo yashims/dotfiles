@@ -76,6 +76,8 @@ setopt hist_no_store
 
 export GIT_PAGER="lv -c"
 
+export PATH="$PATH:/$HOME/bin"
+
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "/Users/yashiro/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/yashiro/.sdkman/bin/sdkman-init.sh"
 

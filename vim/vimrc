@@ -150,7 +150,7 @@ set fileencodings+=,ucs-2le,ucs-2,utf-8
 " オートコマンド
 "----------------------------------------------------
 augroup vimrc
-    autocmd FileType html,tx,coffee,javascript,css,scss,sh,ruby,json,js,yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2
+    autocmd FileType html,tx,coffee,javascript,css,scss,sh,ruby,json,js,yaml,vue setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
 if has("autocmd")
     " 自動判定されない拡張子のファイルタイプを設定
@@ -159,6 +159,7 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.t    set filetype=perl
     autocmd BufNewFile,BufRead *.hbs  set filetype=html
     autocmd BufNewFile,BufRead *.tx   set filetype=html
+    autocmd BufNewFile,BufRead *.vue  set filetype=html
     " カーソル位置を記憶する
 "    autocmd BufReadPost *
 "        \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -173,7 +174,8 @@ endif
 " インデント
 "----------------------------------------------------
 " オートインデントを無効にする
-set noautoindent
+"set noautoindent
+set smartindent
 
 " ------------------------------------------------------
 " neocomplcache
