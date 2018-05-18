@@ -28,6 +28,13 @@ fi
 ln -sf $PWD/vim/dein.toml $HOME/.vim/rc/dein.toml
 ln -sf $PWD/vim/dein_lazy.toml $HOME/.vim/rc/dein_lazy.toml
 
+if [ ! -d $HOME/.sdkman ]; then
+  curl -s "https://get.sdkman.io" | bash
+  source "$HOME/.sdkman/bin/sdkman-init.sh"
+  sdk version
+fi
+sdk install java
+
 if [ ! -d $HOME/.anyenv ]; then
   git clone https://github.com/riywo/anyenv $HOME/.anyenv
   exec $SHELL -l
@@ -36,16 +43,16 @@ fi
 if [ ! -d $HOME/.anyenv/envs/ndenv ]; then
   anyenv install ndenv
   exec $SHELL -l
-  cat .node-version | ndenv install
-  ndenv global `cat .node-version`
-  ndenv rehash
 fi
+ndenv install `cat .node_version`
+ndenv global  `cat .node_version`
+ndenv rehash
 
 if [ ! -d $HOME/.anyenv/envs/rbenv ]; then
   anyenv install rbenv
   exec $SHELL -l
-  cat .ruby-version | rbenv install
-  rbenv global `cat .ruby-version`
-  rbenv rehash
 fi
+rbenv install `cat .ruby_version`
+rbenv global  `cat .ruby_version`
+rbenv rehash
 
