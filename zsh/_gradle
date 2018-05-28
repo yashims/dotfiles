@@ -28,7 +28,7 @@ _gradle() {
   if [[ -f $cache_dir/$gradle_files_checksum ]]; then # cached! yay!
     completions=$(\cat $cache_dir/$gradle_files_checksum)
   else # not cached! boo-urns!
-    completions=$($gradle_cmd --no-color --quiet tasks | grep ' - ' | awk '{print $1}' | tr '\n' ' ')
+    completions=$($gradle_cmd --console=plain --quiet tasks | grep ' - ' | awk '{print $1}' | tr '\n' ' ')
     if [[ ! -z $completions ]]; then
       echo $completions > $cache_dir/$gradle_files_checksum
     fi

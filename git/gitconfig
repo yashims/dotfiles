@@ -6,12 +6,15 @@
 [core]
     whitespace = space-before-tab,-indent-with-non-tab,trailing-space
     editor = vim
+    pager = less
 [user]
     name = Masaya Yashiro
     email = yashims85@gmail.com
 [push]
-	default = simple
+    default = simple
 [merge]
     ff = false
 [pull]
     ff = only
+[pager]
+    branch = cat
