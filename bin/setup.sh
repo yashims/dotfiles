@@ -22,6 +22,11 @@ if [ -e $HOME/.ctags ]; then
 fi
 ln -sf $PWD/vim/ctags $HOME/.ctags
 
+if [ -e $HOME/Library/Application\ Support/Code/User/settings.json ]; then
+  rm -f $HOME/Library/Application\ Support/Code/User/settings.json
+fi
+ln -s $PWD/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+
 if [ ! -d $HOME/.vim ]; then
   mkdir -p $HOME/.vim/rc/ $HOME/.vim/tmp/backup/ $HOME/.vim/tmp/snippets $HOME/.vim/tmp/swap/
 fi

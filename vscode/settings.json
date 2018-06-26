@@ -1,0 +1,15 @@
+{
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.useTabStops": true,
+    "editor.detectIndentation": true,
+    "window.zoomLevel": 0,
+    "files.associations": {
+        "Fastfile": "ruby"
+    },
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "terminal.external.osxExec": "iTerm.app",
+    "git.autorefresh": false,
+    "editor.parameterHints": false
+}
