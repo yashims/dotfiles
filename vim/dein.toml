@@ -26,6 +26,11 @@ repo = 'thinca/vim-quickrun'
 [[plugins]]
 # シンタックスプラグイン
 repo = 'scrooloose/syntastic'
+
+[[plugins]]
+# シンタックスプラグイン
+repo = 'leafgarland/typescript-vim'
+
 [[plugins]]
 repo = 'kchmck/vim-coffee-script'
 
