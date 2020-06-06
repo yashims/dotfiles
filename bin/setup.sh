@@ -45,13 +45,13 @@ if [ ! -d $HOME/.anyenv ]; then
   exec $SHELL -l
 fi
 
-if [ ! -d $HOME/.anyenv/envs/ndenv ]; then
-  anyenv install ndenv
+if [ ! -d $HOME/.anyenv/envs/nodenv ]; then
+  anyenv install nodenv
   exec $SHELL -l
 fi
-ndenv install `cat .node_version`
-ndenv global  `cat .node_version`
-ndenv rehash
+nodenv install `cat .node_version`
+nodenv global  `cat .node_version`
+nodenv rehash
 
 if [ ! -d $HOME/.anyenv/envs/rbenv ]; then
   anyenv install rbenv
