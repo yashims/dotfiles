@@ -1,5 +1,8 @@
 
 # $HOME_HOST/$OSTYPE を.zshrcで設定しておく
+
+source $(dirname $0)/ssh-agent.sh
+
 # current directory のgitリポジトリ情報を取得
 _set_env_git_current_branch() {
     GIT_CURRENT_REPOSITORY=`git config --local -l 2>/dev/null | awk -F/ '/^remote.origin.url/{print $NF}'`
