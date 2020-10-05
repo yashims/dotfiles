@@ -41,7 +41,7 @@ fi
 sdk install java
 
 if [ ! -d $HOME/.anyenv ]; then
-  git clone https://github.com/riywo/anyenv $HOME/.anyenv
+  brew install anyenv
   exec $SHELL -l
 fi
 
