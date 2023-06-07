@@ -3,7 +3,6 @@
     "editor.insertSpaces": true,
     "editor.useTabStops": true,
     "editor.detectIndentation": true,
-    "window.zoomLevel": 0,
     "files.associations": {
         "Fastfile": "ruby"
     },
@@ -11,5 +10,8 @@
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "terminal.external.osxExec": "iTerm.app",
     "git.autorefresh": false,
-    "editor.parameterHints": false
+    "editor.parameterHints": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "workbench.editor.untitled.hint": "hidden",
+    "editor.unicodeHighlight.nonBasicASCII": false
 }

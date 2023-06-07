@@ -15,6 +15,8 @@ _gradle() {
   local cache_dir="$HOME/.gradle_tabcompletion"
   mkdir -p $cache_dir
 
+  local root_project_name=$($gradle_cmd properties | grep rootProject | sed "s/^rootProject: root project '\(.*\)'$/\1/g")
+
   local gradle_files_checksum='hoge';
   if [[ -f build.gradle ]]; then # top-level gradle file
     if [[ -x `which md5 2> /dev/null` ]]; then # mac
@@ -27,12 +29,13 @@ _gradle() {
     gradle_files_checksum='no_gradle_files'
   fi
 
-  if [[ -f $cache_dir/$gradle_files_checksum ]]; then # cached! yay!
-    completions=$(\cat $cache_dir/$gradle_files_checksum)
+  local completion_file_path="$cache_dir/${root_project_name}_$gradle_files_checksum"
+  if [[ -f $completion_file_path ]]; then # cached! yay!
+    completions=$(\cat $completion_file_path)
   else # not cached! boo-urns!
     completions=$($gradle_cmd --console=plain --quiet tasks | grep ' - ' | awk '{print $1}' | tr '\n' ' ')
     if [[ ! -z $completions ]]; then
-      echo $completions > $cache_dir/$gradle_files_checksum
+      echo $completions > $completion_file_path
     fi
   fi
 

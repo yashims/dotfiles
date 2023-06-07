@@ -8,7 +8,7 @@
     editor = vim
     pager = less
 [user]
-    name = YASHIRO Masaya
+    name = Masaya Yashiro
     email = yashims85@gmail.com
 [push]
     default = simple
