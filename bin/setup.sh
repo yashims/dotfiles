@@ -7,6 +7,11 @@ if [ ! -f $HOME/.zshrc ]; then
   ln -sf $PWD/zsh/zshrc $HOME/.zshrc
 fi
 
+if [ -e $HOME/.gitconfig ]; then
+  rm -f $HOME/.gitconfig
+fi
+ln -sf $PWD/git/gitconfig $HOME/.gitconfig
+
 if [ -e $HOME/.tmux.conf ]; then
   rm -f $HOME/.tmux.conf
 fi
@@ -49,15 +54,15 @@ if [ ! -d $HOME/.anyenv/envs/nodenv ]; then
   anyenv install nodenv
   exec $SHELL -l
 fi
-nodenv install `cat .node_version`
-nodenv global  `cat .node_version`
+nodenv install `cat .node-version`
+nodenv global  `cat .node-version`
 nodenv rehash
 
 if [ ! -d $HOME/.anyenv/envs/rbenv ]; then
   anyenv install rbenv
   exec $SHELL -l
 fi
-rbenv install `cat .ruby_version`
-rbenv global  `cat .ruby_version`
+rbenv install `cat .ruby-version`
+rbenv global  `cat .ruby-version`
 rbenv rehash
 
