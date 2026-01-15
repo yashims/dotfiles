@@ -32,6 +32,11 @@ if [ -e $HOME/Library/Application\ Support/Code/User/settings.json ]; then
 fi
 ln -s $PWD/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 
+if [ -e $HOME/AGENTS.md ]; then
+  rm -f $HOME/AGENTS.md
+fi
+ln -s $PWD/ai/AGENTS.md $HOME/AGENTS.md
+
 if [ ! -d $HOME/.vim ]; then
   mkdir -p $HOME/.vim/rc/ $HOME/.vim/tmp/backup/ $HOME/.vim/tmp/snippets $HOME/.vim/tmp/swap/
 fi
