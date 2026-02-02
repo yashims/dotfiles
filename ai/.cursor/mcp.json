@@ -1,0 +1,29 @@
+{
+  "mcpServers": {
+    "Figma": {
+      "url": "https://mcp.figma.com/mcp",
+      "headers": {}
+    },
+    "Apidoc": {
+      "url": "https://new-api-docs.abceed.com/llms.txt",
+      "command": "npx",
+      "args": [
+        "-y",
+        "apidog-mcp-server@latest",
+        "--oas=https://new-api-docs.abceed.com/llms.txt"
+      ]
+    },
+    "LocalAIConfig": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/yashiromasaya/dotfiles/ai"
+      ]
+    },
+    "Notion": {
+      "url": "https://mcp.notion.com/mcp",
+      "headers": {}
+    }
+  }
+}
