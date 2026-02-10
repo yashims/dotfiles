@@ -4,14 +4,16 @@
       "url": "https://mcp.figma.com/mcp",
       "headers": {}
     },
-    "Apidoc": {
-      "url": "https://new-api-docs.abceed.com/llms.txt",
+    "AbceedApidoc": {
       "command": "npx",
       "args": [
         "-y",
         "apidog-mcp-server@latest",
-        "--oas=https://new-api-docs.abceed.com/llms.txt"
-      ]
+        "--project=962204"
+      ],
+      "env": {
+        "APIDOG_ACCESS_TOKEN": "adgp_2f0d45RVBXu6UowTSkf5DkrpjKymIUoqLwkO"
+      }
     },
     "LocalAIConfig": {
       "command": "npx",
