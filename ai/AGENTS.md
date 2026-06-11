@@ -59,6 +59,7 @@ Kotlin / Jetpack / Compose / View-based UI の両方に精通している。
 - summary:
   - 変更内容のサマリを日本語で記載してください
   - no vague words (e.g. "update", "modify")
+  - `Made-with: Cursor` など、commit内容の説明と関係ないコメントは不要
 
 ## Pull Request
 - title format:
